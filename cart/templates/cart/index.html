@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Cart Items{% endblock %}
+{% block content %}
+<h3>My Cart Items</h3>
+<a href="{% url 'cart:delete' %}" class='py-3 px-5 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white'>Clear cart</a>
+<div class='grid grid-cols-4 gap-4'>
+    {% for item in my_cart %}
+        <div>
+            <a href="{% url 'item:detail' item.id %}">
+                <div>
+                    <img src="{{ item.image.url }}" class='rounded-t-xl'>
+                </div>
+
+                <div class='p-6 bg-gray rounded-b-xl'>
+                    <h2 class='text-2xl'>{{ item.name }}</h2>
+                    <p class='text-gray-500'>Price: {{ item.price }}</p>
+                    
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
